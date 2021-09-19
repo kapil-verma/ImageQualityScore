@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detection Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <script src="assets/code.js"></script>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}"/>
+    <style>
+        .jumbotron {
+            background: rgb(245,245,245); /* This is for ie8 and below */
+            background: rgba(245,245,245, 0.98);             /* Transparent background */
+            width: 90%;
+        }
+        #container {
+                	background-color: #ffffff;
+                	margin: 0 auto;
+                	padding: 0;
+                	position: fixed;
+                    bottom:0%;
+                    width:100%;
+                }
+        </style>
+  </head>
+   <body background="https://images.unsplash.com/photo-1560574188-6a6774965120?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
+      <br>
+    <div class="container main">
+		<div class="jumbotron center-block" id="holder">
+		<header>
+			<div class="container">
+			<h2 class='main_heading'style="color: rgb(46,116,181);"> Automated Image Quality Estimation Model</h2>
+			<p><h3>Results for Uploaded Image</h3></p>
+			</div>
+			<div class="results">
+			    <strong> {{prediction}}</strong>
+			</div>
+		</header>
+		</div>
+	</div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <div id="container" class="footer-copyright text-center py-3">
+    <div class="bottom">
+      <p><a href="https://www.linkedin.com/in/99kapil-verma/">Contact</a></p>
+    </div>
+  </div>
+
+</footer>
+<!-- Footer -->
+</body>
+</html>

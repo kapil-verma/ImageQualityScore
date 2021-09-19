@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Scoring</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <script src="assets/code.js"></script>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='dont_delete__favicon.png') }}"/>
+    <style>
+        .button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 4px 8px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 2px 1px;
+          -webkit-transition-duration: 0.4s; /* Safari */
+          transition-duration: 0.4s;
+          cursor: pointer;
+        }
+            .button5 {
+          background-color: white;
+          color: black;
+          border: 2px solid #e7e7e7;
+        }
+
+        .button5:hover {
+          background-color: #555555;
+          color: white;
+        }
+        .jumbotron {
+            background: rgb(245,245,245); /* This is for ie8 and below */
+            background: rgba(245,245,245, 0.98);             /* Transparent background */
+            width: 90%;
+        }
+        #container {
+                	background-color: #ffffff;
+                	margin: 0 auto;
+                	padding: 0;
+                    position: fixed;
+                    bottom:0%;
+                    width:100%;
+                }
+        .indent-1 {float: left;}
+        .indent-1 section {width: 50%; float: left;}
+        </style>
+  </head>
+  <body background="https://images.unsplash.com/photo-1560574188-6a6774965120?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" style="background-size: cover;">
+      <br>
+    <div class="container main">
+  <div class="jumbotron center-block" id="holder">
+        <h2 class='main_heading'style="color: rgb(46,116,181);"> Automated Image Quality Estimation Model</h2>
+     <br>
+     <p>The model can estimate two type of scores: <em>Aesthetic and Technical</em>, based on the input.<br>
+     <small style="color:#282828"> Aesthetic score quantifies semantic level
+characteristics associated with emotions and beauty in images whereas technical score quantifies quality metrics such as noise, blur, compression etc.</small></p>
+      <h5 style="font-weight: 850;">Architecture : Mobilenet, Backend : Flask</h5> 
+      </p>
+
+    <div class="instructions">
+    <section class="indent-1">
+      <h3>Instructions: </h3>
+      <p>1. A new page will appear after uploading the image, selecting score type & clicking submit.
+      <small style="color:#282828">It may take upto a minute (maximum)</small>
+      </p>
+      <p>2. You will get a JSON dictionary of selected score result out of 10.</p>
+      <h4>Upload your image here</h4>
+    </section>
+    </div>
+    <form enctype="multipart/form-data" style="border-radius: 8px;" class="form-horizontal" method="POST" action="/predict">
+      
+        <input type="file" name="file">
+        <br>
+        <h4>Choose type of score:</h4>
+        <select name="scr_select" class="selectpicker form-control">
+          <option value="Aesthetic">Aesthetic</option>
+          <option value="Technical">Technical</option>
+        </select>
+        <!-- <input type="text" name="text" placeholder="Enter 1 or 2"><br>
+        <small class="form-text text-muted">Enter 1 for Aesthetic Score or 2 for Technical score</small> -->
+        <br>
+        <input style="border-radius: 8px;" class="button button5" type="submit">
+    </form>
+    <br>
+  </div>
+</div>
+<br>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <div id="container" class="footer-copyright text-center py-3">
+    <div class="bottom">
+      <p><a href="https://www.linkedin.com/in/99kapil-verma/">Contact</a></p>
+    </div>
+  </div>
+
+</footer>
+<!-- Footer -->
+  </body>
+</html>
