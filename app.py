@@ -52,7 +52,7 @@ def predict():
 
 if __name__ == '__main__':
     #ssl_context='adhoc'
-    app.run()
+    app.run(debug=True)
             
 
    
