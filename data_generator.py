@@ -2,7 +2,7 @@
 import os
 import numpy as np
 import utils
-
+import keras
 
 class TrainDataGenerator(keras.utils.all_utils.Sequence):
     '''inherits from Keras Sequence base object, allows to use multiprocessing in .fit_generator'''
