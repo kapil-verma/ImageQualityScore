@@ -7,8 +7,6 @@ import json
 from utils import calc_mean_score, save_json
 from model_builder import Nima
 from data_generator import TestDataGenerator
-import pandas as pd
-
 
 def image_file_to_json(img_path):
     img_dir = os.path.dirname(img_path)
@@ -85,10 +83,10 @@ if __name__ == '__main__':
     # parser.add_argument('-pf', '--predictions-file', help='file with predictions', required=False, default=None)
 
     # args = parser.parse_args()
-    result = main(base_model_name,'aesthetic','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
-    dfA = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'asesthetic_score'})
-    result = main(base_model_name,'technical','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
-    dfB = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'technical_score'})
-    df = pd.merge(dfA,dfB,on='image_id',how='left')
-    df['comb_score']=(df['asesthetic_score']+df['technical_score'])/2
-    df = df.sort_values(by=['comb_score'],ascending=False).reset_index(drop=True)
+#     result = main(base_model_name,'aesthetic','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
+#     dfA = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'asesthetic_score'})
+#     result = main(base_model_name,'technical','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
+#     dfB = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'technical_score'})
+#     df = pd.merge(dfA,dfB,on='image_id',how='left')
+#     df['comb_score']=(df['asesthetic_score']+df['technical_score'])/2
+#     df = df.sort_values(by=['comb_score'],ascending=False).reset_index(drop=True)
