@@ -1,11 +1,10 @@
 
 import os
 import numpy as np
-import tensorflow as tf
 import utils
 
 
-class TrainDataGenerator(tf.keras.utils.Sequence):
+class TrainDataGenerator(keras.utils.all_utils.Sequence):
     '''inherits from Keras Sequence base object, allows to use multiprocessing in .fit_generator'''
     def __init__(self, samples, img_dir, batch_size, n_classes, basenet_preprocess, img_format,
                  img_load_dims=(256, 256), img_crop_dims=(224, 224), shuffle=True):
@@ -58,7 +57,7 @@ class TrainDataGenerator(tf.keras.utils.Sequence):
         return X, y
 
 
-class TestDataGenerator(tf.keras.utils.Sequence):
+class TestDataGenerator(keras.utils.all_utils.Sequence):
     '''inherits from Keras Sequence base object, allows to use multiprocessing in .fit_generator'''
     def __init__(self, samples, img_dir, batch_size, n_classes, basenet_preprocess, img_format,
                  img_load_dims=(224, 224)):
