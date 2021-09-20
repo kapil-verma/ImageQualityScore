@@ -2,7 +2,7 @@
 
 import os
 import json
-import tensorflow as tf
+import keras
 import numpy as np
 
 
@@ -36,7 +36,7 @@ def random_horizontal_flip(img):
 
 
 def load_image(img_file, target_size):
-    return np.asarray(tf.keras.preprocessing.image.load_img(img_file, target_size=target_size))
+    return np.asarray(keras.preprocessing.image.load_img(img_file, target_size=target_size))
 
 
 def normalize_labels(labels):
