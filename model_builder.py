@@ -1,8 +1,7 @@
 
 import importlib
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dropout, Dense
-from tensorflow.keras.optimizers import Adam
+from keras.models import Model
+from keras.layers import Dropout, Dense
 from losses import earth_movers_distance
 
 
@@ -21,11 +20,11 @@ class Nima:
     def _get_base_module(self):
         # import Keras base model module
         if self.base_model_name == 'InceptionV3':
-            self.base_module = importlib.import_module('tensorflow.keras.applications.inception_v3')
+            self.base_module = importlib.import_module('keras.applications.inception_v3')
         elif self.base_model_name == 'InceptionResNetV2':
-            self.base_module = importlib.import_module('tensorflow.keras.applications.inception_resnet_v2')
+            self.base_module = importlib.import_module('keras.applications.inception_resnet_v2')
         else:
-            self.base_module = importlib.import_module('tensorflow.keras.applications.'+self.base_model_name.lower())
+            self.base_module = importlib.import_module('keras.applications.'+self.base_model_name.lower())
 
     def build(self):
         # get base model class
@@ -41,7 +40,7 @@ class Nima:
         self.nima_model = Model(self.base_model.inputs, x)
 
     def compile(self):
-        self.nima_model.compile(optimizer=Adam(lr=self.learning_rate, decay=self.decay), loss=self.loss)
+        self.nima_model.compile(optimizer='adam', loss=self.loss)
 
     def preprocessing_function(self):
         return self.base_module.preprocess_input
