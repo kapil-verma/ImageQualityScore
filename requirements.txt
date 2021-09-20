@@ -1,4 +1,4 @@
-#python version 3.6.8
+#python version 3.6.15
 Flask==1.1.1
 Flask-Cors==3.0.9
 numpy==1.17.2
