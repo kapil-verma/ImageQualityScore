@@ -31,7 +31,7 @@ def predict(model, data_generator):
     #followed by a Softmax activation function
     # Aesthetic model is trained on Aesthetic Visual Analysis (AVA) dataset
     # Technical model is trained on TID2013 test set dataset
-    return model.predict_generator(data_generator, workers=8, use_multiprocessing=True, verbose=1)
+    return model.predict_generator(data_generator, workers=8, use_multiprocessing=True, verbose=1,steps=10)
 
 
 def main(base_model_name, model_type, image_source, predictions_file=None, img_format='jpg'):
