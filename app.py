@@ -1,7 +1,7 @@
 import os
 from predict import main
 from flask import Flask,request,render_template
-from tensorflow.keras import backend as K
+from keras import backend as K
 
 app = Flask(__name__)
 
