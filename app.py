@@ -39,7 +39,7 @@ def predict():
         return 'file name not found …'
     else:
         path=os.path.join(os.getcwd()+user_file.filename)
-        user_file.save(path)
+        #user_file.save(path)
         K.clear_session() 
         print(path)
         result = main(base_model_name,model_type,path,None,path.split(".")[-1])
@@ -52,7 +52,7 @@ def predict():
 
 if __name__ == '__main__':
     #ssl_context='adhoc'
-    app.run(debug=True)
+    app.run()
             
 
    
