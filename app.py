@@ -38,10 +38,10 @@ def predict():
     if user_file.filename == '':
         return 'file name not found …'
     else:
-        path=os.path.join(os.getcwd()+user_file.filename)
+        path=os.path.join(os.getcwd(),user_file.filename)
+        print(path)
         #user_file.save(path)
         K.clear_session() 
-        print(path)
         result = main(base_model_name,model_type,path,None,path.split(".")[-1])
         K.clear_session() 
         
