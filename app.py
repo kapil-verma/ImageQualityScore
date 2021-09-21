@@ -45,9 +45,7 @@ def predict():
         result = main(base_model_name,model_type,path,None,path.split(".")[-1])
         K.clear_session() 
         
-        prediction ={
-        f"{model_type} Score Prediction":str(round(eval(result)[0]['mean_score_prediction'],2))+'/10'
-        }
+        prediction ={"{} Score Prediction".format(model_type):str(round(eval(result)[0]['mean_score_prediction'],2))+'/10'}
     return render_template('result.html',prediction = prediction)
 
 if __name__ == '__main__':
