@@ -1,5 +1,8 @@
 # Automated Image Quality Estimation Application
 A model for getting automatically learned quality assessment for input images. The model can estimate two type of scores on a scale of 10: Aesthetic and Technical, based on the input. Aesthetic score quantifies semantic level characteristics associated with emotions and beauty in images whereas technical score quantifies quality metrics such as noise, blur, compression etc. <br>
+
+:star2: *Live Demo available at https://kapilve.pythonanywhere.com/imgQuality*<br>
+
 #### Contents
 * `data_generator.py` contain functions for preprocessing of images<br>
 * `flaskapi.py` is the Flask API without UI
