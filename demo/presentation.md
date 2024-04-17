@@ -1,6 +1,6 @@
 # Monday presentation
 
-* [PowerPoint file](https://trvoffice-my.sharepoint.com/:p:/g/personal/saurav_sharma_trivago_com/EfdeAIOiuxJCt1ot9p7G-iMBQFtsvfuY9VRBf6ZJ8bMdGg?e=zrPxU4)
+* [PowerPoint file](https://trvoffice-my.sharepoint.com/:p:/r/personal/saurav_sharma_trivago_com/_layouts/15/Doc.aspx?sourcedoc=%7B83005EF7-BBA2-4212-B75A-2DF69EC6FA23%7D&file=hackathon_ppt.pptx&wdLOR=c48B1EB3D-74B8-A14E-A441-A08253C3A580&fromShare=true&action=edit&mobileredirect=true)
 
 # Structure
 
