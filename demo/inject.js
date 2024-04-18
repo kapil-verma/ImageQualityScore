@@ -1,30 +1,10 @@
-var imageData = {
-    "accommodations": [
-        {
-            "id": 6365,
-            "heroImage": "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-            "galleryImages": [
-                "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png",
-                "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png"
-            ]
-        },
-        {
-            "id": 51291,
-            "heroImage": "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png",
-            "galleryImages": [
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png"
-            ]
-        }
-    ]
-};
+var imageData;
 
 function alterImages() {
-    clearTimeout(timer); 
+    clearTimeout(timer);
 
     var accommodations = document.querySelectorAll("[data-testid='accommodation-list-element']");
-    accommodations.forEach(function(accommodation) {
+    accommodations.forEach(function (accommodation) {
         var accommodationId = accommodation.getAttribute('data-accommodation');
 
         imageData.accommodations.forEach(imageData => {
@@ -32,8 +12,8 @@ function alterImages() {
                 var mainImage = accommodation.querySelector("[data-testid='accommodation-main-image']");
                 mainImage.src = imageData.heroImage;
 
-                var galleryImages = accommodation.querySelectorAll("[data-testid='grid-image'] img");
-                galleryImages.forEach(function(galleryImage, index) {
+                var galleryImages = accommodation.querySelectorAll("[data-testid='tile-gallery-image-container'] img");
+                galleryImages.forEach(function (galleryImage, index) {
                     if (index < imageData.galleryImages.length) {
                         galleryImage.src = imageData.galleryImages[index];
                     }
@@ -44,10 +24,27 @@ function alterImages() {
 }
 
 let timer = null;
-if (window.location.href.includes("&optilens")) {
-    const observer = new MutationObserver(() => {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(alterImages, 500);
-    });
-    observer.observe(document, { childList: true, subtree: true });
+if (window.location.href.includes("&optilens_")) {
+    console.log("Optilens active");
+    var dataUrl = null;
+    if (window.location.href.includes("&optilens_nima")) {
+        console.log("Using Nima data");
+        dataUrl = 'https://raw.githack.com/kapil-verma/ImageQualityScore/colab/demo/data_nima.json';
+    } else if (window.location.href.includes("&optilens_gemini")) {
+        console.log("Using Gemini data");
+        dataUrl = 'https://raw.githack.com/kapil-verma/ImageQualityScore/colab/demo/data_gemini.json';
+    }
+    if (dataUrl != null) {
+        fetch(dataUrl).then(response => {
+            if (!response.ok) throw new Error('Could not read image data file: ' + dataUrl);
+            return response.json();
+        }).then(data => {
+            imageData = data;
+            const observer = new MutationObserver(() => {
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(alterImages, 500);
+            });
+            observer.observe(document, { childList: true, subtree: true });
+        }).catch(error => console.error('There has been a problem with your fetch operation:', error));
+    }
 }
