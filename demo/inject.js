@@ -44,11 +44,10 @@ function alterImages() {
 }
 
 let timer = null;
-const observer = new MutationObserver(() => {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(alterImages, 500);
-});
-
 if (window.location.href.includes("&optilens")) {
+    const observer = new MutationObserver(() => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(alterImages, 500);
+    });
     observer.observe(document, { childList: true, subtree: true });
 }
