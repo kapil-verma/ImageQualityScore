@@ -11,7 +11,7 @@
 
 ### Setup
 
-![Inject setup](/path/inject_setup.png).
+![Inject setup](img/inject_setup.png).
 
 * Name: `Change hero and gallery image`
 * Description: `This changes the hero images for certain items`
