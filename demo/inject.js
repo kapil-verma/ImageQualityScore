@@ -35,7 +35,6 @@ function alterImages() {
                 });
             }
         }
-        console.log(heroImage);
     });
 }
 
