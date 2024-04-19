@@ -1,21 +1,205 @@
-{
-    "accommodations": [
-        {
-            "id": 6365,
-            "heroImage": "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-            "galleryImages": [
-                "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png",
-                "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png"
-            ]
-        },
-        {
-            "id": 51291,
-            "heroImage": "https://cdn.pixabay.com/photo/2017/07/20/03/52/chicken-2521141_1280.png",
-            "galleryImages": [
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png",
-                "https://cdn.pixabay.com/photo/2024/03/15/22/12/ai-generated-8635876_1280.png"
-            ]
-        }
-    ]
-}
+[
+    {
+        "hotel_name": "13303158",
+        "image_id": "94345762",
+        "image_url": "https://imgcy.trivago.com/partner-images/56/a4/f033163016b58b81737a9390a8ee967236c5be016487811a8ad5d5b54413",
+        "image_score": 0.78,
+        "tag_name": "bedroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "111435052",
+        "image_url": "https://imgcy.trivago.com/partner-images/9f/84/773e8dd545165201819699949db8fad78a7114f4d5a6049f86e71a51d6ce",
+        "image_score": 0.77,
+        "tag_name": "bedroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "119302795",
+        "image_url": "https://imgcy.trivago.com/partner-images/4e/4f/69d0590cf9c549926bd0a83eca31d3bbfb9cc6115223c1d1a91cfca6ba98",
+        "image_score": 0.76,
+        "tag_name": "bedroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "135476695",
+        "image_url": "https://imgcy.trivago.com/partner-images/c4/21/70785cf23c9ad6038627fb0fa6eac30fa94b593befb02dbc42626e3896ac",
+        "image_score": 0.75,
+        "tag_name": "bedroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "112662390",
+        "image_url": "https://imgcy.trivago.com/partner-images/0c/d7/1777852213f894f77d735f3f7f665dcfb4464ca5805169f763a101852d3c",
+        "image_score": 0.73,
+        "tag_name": "bedroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "593033116",
+        "image_url": "https://imgcy.trivago.com/partner-images/23/c6/366f557df1c50f7c1d5bbe7b58a8a7e8930f8b62a893c7e74183e688e22d",
+        "image_score": 0.72,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "119722943",
+        "image_url": "https://imgcy.trivago.com/partner-images/86/17/a6edebd62d796337252405230dfe771bc4c553e2c8842b486d5ec8cbe8f1",
+        "image_score": 0.7,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "119591688",
+        "image_url": "https://imgcy.trivago.com/partner-images/61/46/f7b3b0ff2e1c01737bf3b8a617945a296afd1f198a00a33cd77ddab9a6f5",
+        "image_score": 0.68,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "94538564",
+        "image_url": "https://imgcy.trivago.com/partner-images/77/8a/606b3f5526ca25862c718fe199d4cace6e688b07165586cb28b02890df24",
+        "image_score": 0.65,
+        "tag_name": "reception"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "134535575",
+        "image_url": "https://imgcy.trivago.com/partner-images/12/56/029c08c15168e0f3da030ad431de9da9435d4770eac631a01d016d6d1ab7",
+        "image_score": 0.65,
+        "tag_name": "reception"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "593020882",
+        "image_url": "https://imgcy.trivago.com/partner-images/52/51/dd0f9f958a8994c26f74bfa2bb2b689aa59f0e7bfdc648cbe96d68d893e2",
+        "image_score": 0.62,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "137771138",
+        "image_url": "https://imgcy.trivago.com/partner-images/d2/1f/acc9f64fdb489785b10f5489550995096ee24627a209085ae5f1d8827c11",
+        "image_score": 0.59,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "592385061",
+        "image_url": "https://imgcy.trivago.com/partner-images/f8/5f/aa223f22aeb8f01079394d0cf662aa0de98cecc69e698622b1c0673b0dc0",
+        "image_score": 0.58,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "99396623",
+        "image_url": "https://imgcy.trivago.com/partner-images/d9/ca/80a21419ea2b6a422d561bb313276492b8425632bf7cbeb4c78fb8f2be6c",
+        "image_score": 0.56,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "147345180",
+        "image_url": "https://imgcy.trivago.com/partner-images/b0/4c/7e76f0e36b036e0bf9127e7bed246b8dbaf957846cefe6876aca7ca12c53",
+        "image_score": 0.55,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "141736512",
+        "image_url": "https://imgcy.trivago.com/partner-images/ac/a1/e762c36a07bc6fd6ada52ad87e40a66132db35916022c6e4a179ccd179ae",
+        "image_score": 0.52,
+        "tag_name": "swimming - pool"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "138015418",
+        "image_url": "https://imgcy.trivago.com/partner-images/7e/ac/8aaf8efb82d514ec3b305a43b194f407c9e76079bab58520815c81ccc2ce",
+        "image_score": 0.49,
+        "tag_name": "building"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "148847978",
+        "image_url": "https://imgcy.trivago.com/partner-images/ba/ca/099ae8d4432f115a31276c584f9c8b5831f5a3768bae881ad735abeaf37a",
+        "image_score": 0.48,
+        "tag_name": "reception"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "119725179",
+        "image_url": "https://imgcy.trivago.com/partner-images/64/23/a57bcd6dc68fe9c0115e202447538efe0e566e4426b32418cf68ccf4258f",
+        "image_score": 0.47,
+        "tag_name": "reception"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "112683928",
+        "image_url": "https://imgcy.trivago.com/partner-images/35/d1/89ec5a50831db8d0e0f83c5cc2bda52ef616caec8357031d36bcc02349c8",
+        "image_score": 0.46,
+        "tag_name": "building"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "592543065",
+        "image_url": "https://imgcy.trivago.com/partner-images/3d/7d/2e5f48f7b10f5e9ba76130e2314bacf6bfc4e43427888de71becc7fd71cd",
+        "image_score": 0.35,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "591747927",
+        "image_url": "https://imgcy.trivago.com/partner-images/ea/ab/03938bc0d95b9fb59bee119e62bf2db0b1eee0ecb1e43912c6809e0a57f4",
+        "image_score": 0.34,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "592258662",
+        "image_url": "https://imgcy.trivago.com/partner-images/20/44/b845a3b6c1c453cf7847bae7b6a806b567a54e5d3cbfaf627f4fde0dbe5d",
+        "image_score": 0.33,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "593933420",
+        "image_url": "https://imgcy.trivago.com/partner-images/dd/0f/645e9642b2845c362eaaa54cc3ce463c8616211173a161937221cb4f6dbc",
+        "image_score": 0.32,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "591096087",
+        "image_url": "https://imgcy.trivago.com/partner-images/f4/66/018ee87ef1f808014c4bdd16432c604b01b8603232ff4528e662deb446bb",
+        "image_score": 0.31,
+        "tag_name": "bar"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "593011991",
+        "image_url": "https://imgcy.trivago.com/partner-images/78/38/3f34d7a5c4e615110e7acb59831b05e1ad0c01cac50f185dc6c392b1d45a",
+        "image_score": 0.29,
+        "tag_name": "reception"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "97853818",
+        "image_url": "https://imgcy.trivago.com/partner-images/6a/a9/b66c64018fa2a4965fcd843682399774e2f9da0ddc7bf9c7574e5e20bd1b",
+        "image_score": 0.25,
+        "tag_name": "gym"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "148847123",
+        "image_url": "https://imgcy.trivago.com/partner-images/bc/19/9e911e66f325a4485e3501ddee0f213fe850250961cb194b0fcaf9e6ce26",
+        "image_score": 0.1,
+        "tag_name": "bathroom"
+    },
+    {
+        "hotel_name": "13303158",
+        "image_id": "93063075",
+        "image_url": "https://imgcy.trivago.com/partner-images/05/af/07db343af67a128cd78ba8f0fbc68c2462130d1c548b5d6575bc27f4c02d",
+        "image_score": 0.05,
+        "tag_name": "wellness - spa"
+    }
+]
