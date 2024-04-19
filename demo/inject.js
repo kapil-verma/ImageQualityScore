@@ -28,8 +28,11 @@ if (window.location.href.includes("&optilens_")) {
     console.log("Optilens active");
     var dataUrl = null;
     if (window.location.href.includes("&optilens_nima")) {
-        console.log("Using Nima data");
+        console.log("Using NIMA data");
         dataUrl = 'https://raw.githack.com/kapil-verma/ImageQualityScore/colab/demo/data_nima.json';
+    } else if (window.location.href.includes("&optilens_trinima")) {
+        console.log("Using triNIMA data");
+        dataUrl = 'https://raw.githack.com/kapil-verma/ImageQualityScore/colab/demo/data_trinima.json';
     } else if (window.location.href.includes("&optilens_gemini")) {
         console.log("Using Gemini data");
         dataUrl = 'https://raw.githack.com/kapil-verma/ImageQualityScore/colab/demo/data_gemini.json';
