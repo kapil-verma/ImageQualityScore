@@ -1,25 +1,41 @@
 var imageData;
 
+function getHeroUrl(accommodationId) {
+    var filteredJson = imageData.filter(item => item.hotel_name == accommodationId);
+    if (filteredJson.length == 0) return "";
+    return filteredJson[0].image_url
+}
+
+function getGalleryUrls(accommodationId) {
+    var filteredJson = imageData.filter(item => item.hotel_name == accommodationId);
+    var galleryImages = [];
+    var itemUrls = filteredJson.slice(1).map(item => item.image_url);
+    galleryImages.push(...itemUrls);
+    return galleryImages
+}
+
 function alterImages() {
     clearTimeout(timer);
 
     var accommodations = document.querySelectorAll("[data-testid='accommodation-list-element']");
     accommodations.forEach(function (accommodation) {
         var accommodationId = accommodation.getAttribute('data-accommodation');
+        heroImage = getHeroUrl(accommodationId);
+        if (heroImage != "") {
+            var mainImage = accommodation.querySelector("[data-testid='accommodation-main-image']");
+            mainImage.src = heroImage;
 
-        imageData.accommodations.forEach(imageData => {
-            if (imageData.id == accommodationId) {
-                var mainImage = accommodation.querySelector("[data-testid='accommodation-main-image']");
-                mainImage.src = imageData.heroImage;
-
-                var galleryImages = accommodation.querySelectorAll("[data-testid='tile-gallery-image-container'] img");
-                galleryImages.forEach(function (galleryImage, index) {
-                    if (index < imageData.galleryImages.length) {
-                        galleryImage.src = imageData.galleryImages[index];
+            var galleryImages = accommodation.querySelectorAll("[data-testid='tile-gallery-image-container'] img");
+            var galleryUrls = getGalleryUrls(accommodationId);
+            if (galleryUrls.length > 0) {
+                galleryImages.forEach(function (galleryImage, i) {
+                    if (i < galleryUrls.length) {
+                        galleryImage.src = galleryUrls[i]
                     }
                 });
             }
-        });
+        }
+        console.log(heroImage);
     });
 }
 
