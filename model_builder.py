@@ -1,7 +1,7 @@
 
 import importlib
-from keras.models import Model
-from keras.layers import Dropout, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Dropout, Dense
 from losses import earth_movers_distance
 
 
@@ -38,6 +38,15 @@ class Nima:
         x = Dense(units=self.n_classes, activation='softmax')(x)
 
         self.nima_model = Model(self.base_model.inputs, x)
+
+    def build_for_features(self, input_shape):
+        input_layer = Input(shape=input_shape, name='feature_input')
+        x = Dropout(self.dropout_rate)(input_layer)
+        output_layer = Dense(units=self.n_classes, activation='softmax', name='output')(x)
+        self.nima_model = Model(inputs=input_layer, outputs=output_layer)
+
+        return self.nima_model
+
 
     def compile(self):
         self.nima_model.compile(optimizer='adam', loss=self.loss)

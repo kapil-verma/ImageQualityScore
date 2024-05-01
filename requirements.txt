@@ -1,9 +1,9 @@
-#python version 3.6.15
+#python version 3.11.5
 Flask==1.1.1
 gunicorn==19.9.0
-h5py==2.10.0
-Keras==2.0.8
-numpy==1.19.2
+h5py==3.11.0
+Keras==3.2.1
+numpy==1.24.3
 Pillow>=6.2.2
-tensorflow==1.14
+tensorflow==2.16.1
 

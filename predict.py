@@ -4,9 +4,23 @@ https://ai.googleblog.com/2017/12/introducing-nima-neural-image-assessment.html
 import os
 import glob
 import json
+import pandas as pd
+import numpy as np
 from utils import calc_mean_score, save_json
 from model_builder import Nima
-from data_generator import TestDataGenerator
+from data_generator import DataGenerator
+
+# Function to read the Excel file and convert it to a list of dictionaries
+def excel_to_json(excel_path, url_column='image_urls'):
+    df = pd.read_excel(excel_path)
+    # Find a column that contains the substring 'image_id'
+    image_id_column = next((col for col in df.columns if 'image_id' in col.lower()), None)
+    item_id_column = next((col for col in df.columns if 'accommodation_id' in col.lower()), None)
+    if image_id_column and item_id_column:
+        samples = [{'item_id': row[item_id_column],'image_id': row[image_id_column], 'image_url': row[url_column]} for _, row in df.iterrows()]
+    else:
+        samples = [{'image_id': os.path.basename(url).split('.')[0], 'image_url': url} for url in df[url_column]]
+    return samples
 
 def image_file_to_json(img_path):
     img_dir = os.path.dirname(img_path)
@@ -26,67 +40,65 @@ def image_dir_to_json(img_dir, img_type='jpg'):
     return samples
 
 
-def predict(model, data_generator):
-    #model architecture: MobileNet with its last layer replaced by a dense layer of size 10 
-    #followed by a Softmax activation function
-    # Aesthetic model is trained on Aesthetic Visual Analysis (AVA) dataset
-    # Technical model is trained on TID2013 test set dataset
-    return model.predict_generator(data_generator, workers=8, use_multiprocessing=True, verbose=1,steps=len(data_generator))
+def predict_sequentially(model, data_generator):
+    predictions = []
+    for batch in data_generator:
+        if isinstance(batch, tuple) and len(batch) == 2:
+            batch_data = batch[0]
+        else:
+            batch_data = batch
+
+        batch_predictions = model.predict_on_batch(batch_data)
+        predictions.append(batch_predictions)
+    # Concatenate all batch predictions
+    return np.concatenate(predictions, axis=0)
 
 
-def main(base_model_name, model_type, image_source, predictions_file=None, img_format='jpg'):
-    if model_type=='Aesthetic':
-        #attractiveness of the picture
-        weights_file='models/weights_mobilenet_aesthetic_0.07.hdf5'
+def main(base_model_name, model_type, image_source,image_dir, predictions_file=None, csv_file=None, retrained=False):
+    dirname = os.path.dirname(__file__)
+    if retrained:
+        weights_file = glob.glob(os.path.join(dirname, f'models/*{model_type}-enhanced*.hdf5'))[0]
     else:
-        #technical for noise, blurriness, compression etc.
-        weights_file='models/weights_mobilenet_technical_0.11.hdf5'
-    # load samples
-    if os.path.isfile(image_source):
-        image_dir, samples = image_file_to_json(image_source)
+        weights_file = glob.glob(os.path.join(dirname, f'models/*weights_mobilenet_{model_type}*.hdf5'))[0]
+    
+    if os.path.isfile(image_source) and image_source.endswith(('.xlsx', '.xls')):
+        samples = excel_to_json(image_source)
     else:
-        image_dir = image_source
-        samples = image_dir_to_json(image_dir, img_type='jpg')
-
-    # build model and load weights
-    nima = Nima(base_model_name, weights=None)
+        image_dir = image_source if os.path.isdir(image_source) else os.path.dirname(image_source)
+        samples = image_dir_to_json(image_dir)
+    print(samples)
+    nima = Nima(base_model_name)
     nima.build()
     nima.nima_model.load_weights(weights_file)
+    model = nima.nima_model
 
-    # initialize data generator
-    data_generator = TestDataGenerator(samples, image_dir, 64, 10, nima.preprocessing_function(),
-                                       img_format=img_format)
+    data_generator = DataGenerator(samples, image_dir, batch_size=64, n_classes=10, basenet_preprocess=nima.preprocessing_function())
 
-    # get predictions
-    predictions = predict(nima.nima_model, data_generator)
+    predictions = predict_sequentially(model, data_generator)
 
-    # calc mean scores and add to samples
     for i, sample in enumerate(samples):
-        sample['mean_score_prediction'] = round(calc_mean_score(predictions[i]),2)
+        sample[f'{model_type}_mean_score_prediction'] = round(calc_mean_score(predictions[i]), 2)
+
     result = json.dumps(samples, indent=2)
 
-    print(result)
-
-    if predictions_file is not None:
+    if predictions_file:
         save_json(samples, predictions_file)
-    return json.dumps(samples)
+
+    if csv_file:
+        df = pd.DataFrame(samples)
+        df.to_csv(csv_file, index=False)
+        print(f"Results saved to {csv_file}")
+
+    return samples
 
 
 if __name__ == '__main__':
     base_model_name='MobileNet'
-    model_type_l = ['aesthetic','technical']
+    model_types = ['aesthetic','technical']
+    image_dir = "/Users/kverma/Downloads/Hackathon/ImageQualityScore/images/sampleimages"
 
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('-b', '--base-model-name', help='CNN base model name', required=True)
-    # parser.add_argument('-w', '--weights-file', help='path of weights file', required=True)
-    # parser.add_argument('-is', '--image-source', help='image directory or file', required=True)
-    # parser.add_argument('-pf', '--predictions-file', help='file with predictions', required=False, default=None)
+    # for model_type in model_types:
+    #     predictions_file = f'predictions_{model_type}-test.json'
+    #     main(base_model_name, model_type, 'test_images.xlsx', predictions_file,f'predictions-{model_type}-test.csv')
+    main(base_model_name, 'aesthetic', '/Users/kverma/Downloads/Hackathon/all20images.xlsx', image_dir, f'predictions_aesthetic-trinima.json',f'predictions-aesthetic-trinima.csv', retrained=True)
 
-    # args = parser.parse_args()
-#     result = main(base_model_name,'aesthetic','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
-#     dfA = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'asesthetic_score'})
-#     result = main(base_model_name,'technical','/Users/kapilverma/Downloads/Hotel_recognition/Hotels-50K/hotels50k_snapshot/images/test/',None)
-#     dfB = pd.DataFrame(eval(result)).rename(columns={'mean_score_prediction':'technical_score'})
-#     df = pd.merge(dfA,dfB,on='image_id',how='left')
-#     df['comb_score']=(df['asesthetic_score']+df['technical_score'])/2
-#     df = df.sort_values(by=['comb_score'],ascending=False).reset_index(drop=True)
