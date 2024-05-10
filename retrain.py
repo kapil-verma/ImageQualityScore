@@ -3,6 +3,7 @@ import cv2
 import glob
 import json
 import numpy as np
+import tensorflow as tf
 from model_builder import Nima
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
@@ -132,6 +133,35 @@ def plot_distributions(y_true, y_pred):
     plt.tight_layout()
     plt.show()
 
+def plot_emd_distributions(predictions, labels, score_classes=10):
+    # Convert probabilities to cumulative distributions
+    cdf_pred = np.cumsum(predictions)
+    cdf_true = np.cumsum(labels)
+
+    # Create figure and subplot layout
+    fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(16, 4), sharey=True)
+    ax[0].step(np.arange(1, score_classes+1), predictions, where='mid', label='Predictions', linewidth=2)
+    ax[0].set_title('Predictions')
+    ax[0].set_xlabel('Score')
+    ax[0].set_ylabel('Probability')
+    ax[0].set_xticks(np.arange(1, score_classes+1))
+
+    ax[1].step(np.arange(1, score_classes+1), labels, where='mid', label='Labels', linewidth=2, color='gray')
+    ax[1].set_title('Labels')
+    ax[1].set_xlabel('Score')
+    ax[1].set_xticks(np.arange(1, score_classes+1))
+    
+    ax[2].step(np.arange(1, score_classes+1), cdf_pred, where='mid', label='CDF Predictions', linewidth=2)
+    ax[2].step(np.arange(1, score_classes+1), cdf_true, where='mid', label='CDF Labels', linestyle='--', linewidth=2, color='gray')
+    ax[2].set_title('Earth Mover\'s Distance')
+    ax[2].set_xlabel('Score')
+    ax[2].set_xticks(np.arange(1, score_classes+1))
+    
+    for i in range(3):
+        ax[i].grid(True)
+    
+    plt.tight_layout()
+    plt.show()
 
 if __name__ == '__main__':
     # load images and scores 
@@ -147,4 +177,9 @@ if __name__ == '__main__':
     _, history, y_pred = retrain_nima_model('models/weights_mobilenet_aesthetic_0.07.hdf5','aesthetic', X_train, y_train, X_val, y_val) # 
     plot_history(history)
     plot_distributions(y_val, y_pred)
+    y_pred_prob = tf.nn.softmax(y_pred, axis=-1).numpy()
+    # Average predictions and labels across all samples to get one distribution per class
+    mean_pred = np.mean(y_pred_prob, axis=0)
+    mean_val = np.mean(y_val, axis=0)
+    plot_emd_distributions(mean_pred, mean_val)
     #retrain_nima_model('technical', X_train, y_train, X_val, y_val)
